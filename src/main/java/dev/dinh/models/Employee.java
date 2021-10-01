@@ -1,10 +1,10 @@
-package models;
+package dev.dinh.models;
 
-import services.EmployeeService;
+import dev.dinh.services.EmployeeService;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
+import static dev.dinh.models.Role.*;
 
 public class Employee {
     int employeeID;
@@ -127,7 +127,7 @@ public class Employee {
         this.password = "ChangeMeNow!";
         this.uname = genUname();
         this.wemail = uname + "@revicher.not";
-
+        role = ASSOCIATE;
     }
 
     private String genUname(){

@@ -1,4 +1,4 @@
-package data;
+package dev.dinh.data;
 
 public interface EmployeeDAO {
 

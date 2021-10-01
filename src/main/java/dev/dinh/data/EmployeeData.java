@@ -1,4 +1,4 @@
-package data;
+package dev.dinh.data;
 
 import java.util.ArrayList;
 import java.util.List;
