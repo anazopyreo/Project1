@@ -1,10 +1,11 @@
 package dev.dinh.models;
 
+import dev.dinh.models.enums.Role;
 import dev.dinh.services.EmployeeService;
 
 import java.time.LocalDate;
 
-import static dev.dinh.models.Role.*;
+import static dev.dinh.models.enums.Role.*;
 
 public class Employee {
     int employeeID;
@@ -34,6 +35,7 @@ public class Employee {
 
     public void setUname(String uname) {
         this.uname = uname;
+        this.wemail = uname + "@revicher.not";
     }
 
     public String getPassword() {
@@ -80,9 +82,7 @@ public class Employee {
         return wemail;
     }
 
-    public void setWemail(String wemail) {
-        this.wemail = wemail;
-    }
+    public void setWemail(String wemail) { this.wemail = wemail; }
 
     public String getPphone() {
         return pphone;
@@ -119,20 +119,14 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String fname, String mname, String lname, String pemail) {
+    public Employee(String fname, String mname, String lname, String pemail, String uname) {
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
         this.pemail = pemail;
-        this.password = "ChangeMeNow!";
-        this.uname = genUname();
+        this.uname = uname;
         this.wemail = uname + "@revicher.not";
+        this.password = "ChangeMeNow!";
         role = ASSOCIATE;
-    }
-
-    private String genUname(){
-        String uname = fname.toLowerCase() + "." + lname.toLowerCase();
-        int nextUname = EmployeeService.getNextUname(uname);
-        return uname + nextUname;
     }
 }

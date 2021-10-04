@@ -1,4 +1,4 @@
-package dev.dinh.data;
+package dev.dinh.data.daos;
 
 public interface ReimRequestDAO {
 

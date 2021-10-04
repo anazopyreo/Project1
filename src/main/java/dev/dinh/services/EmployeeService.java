@@ -1,14 +1,30 @@
 package dev.dinh.services;
 
 import dev.dinh.data.EmployeeData;
+import dev.dinh.models.Employee;
+import dev.dinh.models.ReimRequest;
 
 import java.util.List;
 
 public class EmployeeService {
-    public static int getNextUname(String uname) {
-        int output = 0;
-        List<String> unames = EmployeeData.getUnames(uname);
-        //parse list of unames and return next avalable number to be appended on end of uname i.e. chuck.jones6
-        return output;
+
+    public void login(){
+
+    }
+
+    public void logout(){
+
+    }
+
+    public void submitReimRequest(){
+
+    }
+
+    public void viewReimRequests(){
+
+    }
+
+    public void viewProfile(){
+
     }
 }

@@ -1,3 +1,3 @@
-package dev.dinh.models;
+package dev.dinh.models.enums;
 
 public enum Role {ASSOCIATE,MANAGER}

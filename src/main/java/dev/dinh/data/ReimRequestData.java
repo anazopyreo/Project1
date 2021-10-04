@@ -1,5 +1,7 @@
 package dev.dinh.data;
 
-public class ReimRequestData implements ReimRequestDAO{
+import dev.dinh.data.daos.ReimRequestDAO;
+
+public class ReimRequestData implements ReimRequestDAO {
 
 }

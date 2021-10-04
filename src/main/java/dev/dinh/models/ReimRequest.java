@@ -1,8 +1,11 @@
 package dev.dinh.models;
 
+import dev.dinh.models.enums.Category;
+import dev.dinh.models.enums.ReimReqStatus;
+
 import java.time.LocalDateTime;
 
-import static dev.dinh.models.ReimReqStatus.*;
+import static dev.dinh.models.enums.ReimReqStatus.*;
 
 public class ReimRequest {
     double amount;
