@@ -1,3 +1,4 @@
 .idea
-target
-todo-demo.iml
+.settings
+*.iml
+/target
