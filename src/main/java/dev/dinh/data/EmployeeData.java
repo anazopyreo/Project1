@@ -5,11 +5,7 @@ import dev.dinh.models.Employee;
 import dev.dinh.models.enums.Role;
 import dev.dinh.services.ConnectionService;
 
-import javax.servlet.annotation.ServletSecurity;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,12 +109,71 @@ public class EmployeeData implements EmployeeDAO {
         return e;
     }
 
+    @Override
+    public Employee getEmployeeByUname(String uname) {
+        String sql = "select * from employee where username = ?";
+        Employee e = new Employee();
+        try (Connection c = connectionService.establishConnection();
+             PreparedStatement pstmt = c.prepareStatement(sql);) {
+            pstmt.setString(1,uname);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next() == true) {
+                e.setEmployeeID(rs.getInt("employee_id"));
+                e.setUname(rs.getString("username"));
+                e.setPassword(rs.getString("passwd"));
+                e.setFname(rs.getString("fname"));
+                e.setMname(rs.getString("mname"));
+                e.setLname(rs.getString("lname"));
+                e.setPemail(rs.getString("pemail"));
+                e.setPphone(rs.getString("pphone"));
+                e.setWphone(rs.getString("wphone"));
+                e.setHireDate(rs.getDate("hire_date").toLocalDate());
+                e.setRole(Role.valueOf(rs.getString("employee_role")));
+                e.setWemail(rs.getString("username") + "@revicher.not");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return e;
+    }
+
+    @Override
+    public List<Employee> getAllEmployees() {
+        List<Employee> employees = new ArrayList<>();
+        String sql = "select * from employee";
+        try (Connection c = connectionService.establishConnection();
+             Statement stmt = c.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);) {
+            while(rs.next()){
+                Employee e = new Employee();
+                e.setEmployeeID(rs.getInt("employee_id"));
+                e.setUname(rs.getString("username"));
+//                e.setPassword(rs.getString("passwd"));
+                e.setFname(rs.getString("fname"));
+                e.setMname(rs.getString("mname"));
+                e.setLname(rs.getString("lname"));
+                e.setPemail(rs.getString("pemail"));
+                e.setPphone(rs.getString("pphone"));
+                e.setWphone(rs.getString("wphone"));
+                e.setHireDate(rs.getDate("hire_date").toLocalDate());
+                e.setRole(Role.valueOf(rs.getString("employee_role")));
+                e.setWemail(rs.getString("username") + "@revicher.not");
+                employees.add(e);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return employees;
+    }
+
     /**
-     * sets emplyee status in the database
+     * sets employee role in the database
      * @param employeeID
      * @param role
      */
-    public void setStatus(int employeeID, Role role) {
+    public void setRole(int employeeID, Role role) {
         String sql = "update employee set employee_role = ? where employee_id = ?";
         try(Connection c = connectionService.establishConnection();
             PreparedStatement pstmt = c.prepareStatement(sql);){

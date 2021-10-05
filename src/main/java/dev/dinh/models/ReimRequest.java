@@ -4,10 +4,12 @@ import dev.dinh.models.enums.Category;
 import dev.dinh.models.enums.ReimReqStatus;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static dev.dinh.models.enums.ReimReqStatus.*;
 
 public class ReimRequest {
+    int requestiID;
     double amount;
     Category category;
     ReimReqStatus status;
@@ -80,5 +82,32 @@ public class ReimRequest {
         this.category = category;
         this.reqEmployeeID = reqEmployeeID;
         this.status = PENDING;
+    }
+
+    @Override
+    public String toString() {
+        return "ReimRequest{" +
+                "requestiID=" + requestiID +
+                ", amount=" + amount +
+                ", category=" + category +
+                ", status=" + status +
+                ", subDate=" + subDate +
+                ", decDate=" + decDate +
+                ", reqEmployeeID=" + reqEmployeeID +
+                ", decManagerID=" + decManagerID +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ReimRequest)) return false;
+        ReimRequest that = (ReimRequest) o;
+        return requestiID == that.requestiID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(requestiID);
     }
 }

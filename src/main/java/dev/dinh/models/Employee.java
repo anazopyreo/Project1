@@ -4,6 +4,7 @@ import dev.dinh.models.enums.Role;
 import dev.dinh.services.EmployeeService;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import static dev.dinh.models.enums.Role.*;
 
@@ -128,5 +129,35 @@ public class Employee {
         this.wemail = uname + "@revicher.not";
         this.password = "ChangeMeNow!";
         role = ASSOCIATE;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeID=" + employeeID +
+                ", uname='" + uname + '\'' +
+                ", fname='" + fname + '\'' +
+                ", mname='" + mname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", pemail='" + pemail + '\'' +
+                ", wemail='" + wemail + '\'' +
+                ", pphone='" + pphone + '\'' +
+                ", wphone='" + wphone + '\'' +
+                ", hireDate=" + hireDate +
+                ", role=" + role +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return getEmployeeID() == employee.getEmployeeID();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmployeeID());
     }
 }

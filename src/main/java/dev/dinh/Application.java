@@ -5,10 +5,13 @@ import dev.dinh.models.Employee;
 import dev.dinh.services.EmployeeService;
 import dev.dinh.services.ManagerService;
 
+import java.util.List;
+
 public class Application {
 
     public void initiate() {
-        ManagerService m = new ManagerService();
-        m.demoteEmployee(5);
+        EmployeeService es = new EmployeeService();
+        es.promoteEmployee(19);
     }
+
 }

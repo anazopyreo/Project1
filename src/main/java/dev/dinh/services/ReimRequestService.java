@@ -25,4 +25,17 @@ public class ReimRequestService {
         request.setDecManagerID(managerID);
         //send to ReimRequestData
     }
-}
+
+    public void viewReimRequests(){
+
+    }
+
+    public void viewResolvedRequest(){
+
+    }
+
+    public void viewPendingRequests(){
+
+    }
+
+}//end class
