@@ -9,17 +9,25 @@ import java.util.Objects;
 import static dev.dinh.models.enums.ReimReqStatus.*;
 
 public class ReimRequest {
-    int requestiID;
+    int requestID;
     double amount;
     Category category;
     ReimReqStatus status;
-    LocalDateTime subDate; //submission date
+    LocalDateTime reqDate; //request submission date
     LocalDateTime decDate; //decision date
     int reqEmployeeID; //requesting employee ID
     int decManagerID; //deciding manager ID
 
     public double getAmount() {
         return amount;
+    }
+
+    public int getRequestID() {
+        return requestID;
+    }
+
+    public void setRequestID(int requestID) {
+        this.requestID = requestID;
     }
 
     public void setAmount(double amount) {
@@ -34,20 +42,20 @@ public class ReimRequest {
         this.category = category;
     }
 
-    public ReimReqStatus getApproval() {
+    public ReimReqStatus getStatus() {
         return status;
     }
 
-    public void setApproval(ReimReqStatus status) {
+    public void setStatus(ReimReqStatus status) {
         this.status = status;
     }
 
-    public LocalDateTime getSubDate() {
-        return subDate;
+    public LocalDateTime getReqDate() {
+        return reqDate;
     }
 
-    public void setSubDate(LocalDateTime subDate) {
-        this.subDate = subDate;
+    public void setReqDate(LocalDateTime subDate) {
+        this.reqDate = subDate;
     }
 
     public LocalDateTime getDecDate() {
@@ -87,11 +95,11 @@ public class ReimRequest {
     @Override
     public String toString() {
         return "ReimRequest{" +
-                "requestiID=" + requestiID +
+                "requestID=" + requestID +
                 ", amount=" + amount +
                 ", category=" + category +
                 ", status=" + status +
-                ", subDate=" + subDate +
+                ", reqDate=" + reqDate +
                 ", decDate=" + decDate +
                 ", reqEmployeeID=" + reqEmployeeID +
                 ", decManagerID=" + decManagerID +
@@ -103,11 +111,11 @@ public class ReimRequest {
         if (this == o) return true;
         if (!(o instanceof ReimRequest)) return false;
         ReimRequest that = (ReimRequest) o;
-        return requestiID == that.requestiID;
+        return requestID == that.requestID;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(requestiID);
+        return Objects.hash(requestID);
     }
 }
