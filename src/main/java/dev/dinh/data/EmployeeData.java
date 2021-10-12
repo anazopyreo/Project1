@@ -60,8 +60,8 @@ public class EmployeeData implements EmployeeDAO {
 
     @Override
     public void createEmployee(Employee e) {
-        String sql = "insert into employee (username, passwd, fname, mname, lname, pemail, hire_date, employee_role)" +
-                "values (?,?,?,?,?,?,now(),?) returning employee_id, hire_date";
+        String sql = "insert into employee (username, passwd, fname, mname, lname, pemail, employee_role)" +
+                "values (?,?,?,?,?,?,?) returning employee_id, hire_date";
         try (Connection c = connectionService.establishConnection();
              PreparedStatement pstmt = c.prepareStatement(sql);) {
             pstmt.setString(1,e.getUname());

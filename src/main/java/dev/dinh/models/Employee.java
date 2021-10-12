@@ -1,5 +1,8 @@
 package dev.dinh.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.dinh.models.enums.Role;
 import dev.dinh.services.EmployeeService;
 
@@ -11,6 +14,8 @@ import static dev.dinh.models.enums.Role.*;
 public class Employee {
     int employeeID;
     String uname; //username
+
+    @JsonIgnore
     String password; //password
     String fname;
     String mname;
@@ -19,6 +24,9 @@ public class Employee {
     String wemail; //work email
     String pphone; //personal phone
     String wphone; //work phone
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     LocalDate hireDate;
     Role role;
 
@@ -153,11 +161,11 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return getEmployeeID() == employee.getEmployeeID();
+        return getEmployeeID() == employee.getEmployeeID() && getUname().equals(employee.getUname()) && getPassword().equals(employee.getPassword()) && getFname().equals(employee.getFname()) && Objects.equals(getMname(), employee.getMname()) && getLname().equals(employee.getLname()) && getPemail().equals(employee.getPemail()) && Objects.equals(getPphone(), employee.getPphone()) && Objects.equals(getWphone(), employee.getWphone()) && getHireDate().equals(employee.getHireDate()) && getRole() == employee.getRole();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmployeeID());
+        return Objects.hash(getEmployeeID(), getUname(), getPassword(), getFname(), getMname(), getLname(), getPemail(), getPphone(), getWphone(), getHireDate(), getRole());
     }
 }

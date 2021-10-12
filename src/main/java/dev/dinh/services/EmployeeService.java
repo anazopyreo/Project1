@@ -2,34 +2,33 @@ package dev.dinh.services;
 
 import dev.dinh.data.EmployeeData;
 import dev.dinh.models.Employee;
+import dev.dinh.services.interfaces.EmployeeInterface;
 
 import java.util.List;
 
 import static dev.dinh.models.enums.Role.ASSOCIATE;
 import static dev.dinh.models.enums.Role.MANAGER;
 
-public class EmployeeService {
+public class EmployeeService implements EmployeeInterface {
 
     EmployeeData employeeData = new EmployeeData();
 
-    public Employee login(String uname, String password){
-        Employee e = employeeData.getEmployeeByUname(uname);
-        if(password.equals(e.getPassword())){
-            return e;
-        }
-        return null;
-    }
-
-    public void logout(){
-        //might be unused since likely will just revoke cookie or something
-    }
-
-    public Employee getEmployee(int employeeID){
+    public Employee getEmployeeByID(int employeeID){
         return employeeData.getEmployeeByID(employeeID);
     }
 
-    public List<Employee> viewAllEmployees(){
+    public List<Employee> getAllEmployees(){
         return employeeData.getAllEmployees();
+    }
+
+    /**
+     * Locates employee by provided username
+     * @param uname a username for the lookup
+     * @return an Employee Object
+     */
+    @Override
+    public Employee getEmployeeByUname(String uname) {
+        return employeeData.getEmployeeByUname(uname);
     }
 
     /**

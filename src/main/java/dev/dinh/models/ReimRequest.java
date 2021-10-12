@@ -111,11 +111,11 @@ public class ReimRequest {
         if (this == o) return true;
         if (!(o instanceof ReimRequest)) return false;
         ReimRequest that = (ReimRequest) o;
-        return requestID == that.requestID;
+        return getRequestID() == that.getRequestID() && Double.compare(that.getAmount(), getAmount()) == 0 && getReqEmployeeID() == that.getReqEmployeeID() && getDecManagerID() == that.getDecManagerID() && getCategory() == that.getCategory() && getStatus() == that.getStatus() && getReqDate().equals(that.getReqDate()) && Objects.equals(getDecDate(), that.getDecDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(requestID);
+        return Objects.hash(getRequestID(), getAmount(), getCategory(), getStatus(), getReqDate(), getDecDate(), getReqEmployeeID(), getDecManagerID());
     }
 }

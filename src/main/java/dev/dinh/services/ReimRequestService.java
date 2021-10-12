@@ -4,28 +4,35 @@ import dev.dinh.data.ReimRequestData;
 import dev.dinh.models.enums.Category;
 import dev.dinh.models.enums.ReimReqStatus;
 import dev.dinh.models.ReimRequest;
-import jdk.nashorn.internal.ir.RuntimeNode;
+import dev.dinh.services.interfaces.ReimReqInterface;
 
 import java.util.List;
 
-import static dev.dinh.models.enums.ReimReqStatus.*;
 
-public class ReimRequestService {
+public class ReimRequestService implements ReimReqInterface {
 
     ReimRequestData rrd = new ReimRequestData();
 
+    /**
+     * Creates a reimbursement request
+     * @param amount
+     * @param category
+     * @param reqEmployeeID
+     * @return  ReimRequest object
+     */
     public ReimRequest createReq(double amount, Category category, int reqEmployeeID){
         ReimRequest rr = new ReimRequest(amount,category,reqEmployeeID);
         rrd.createRequest(rr);
         return rr;
     }
 
-    public ReimRequest getRequest(int requestID){
+
+    public ReimRequest getRequestById(int requestID){
         return rrd.getRequest(requestID);
     }
 
     public void setStatus(int requestID, int managerID, ReimReqStatus status){
-        ReimRequest rr = getRequest(requestID);
+        ReimRequest rr = getRequestById(requestID);
         rr.setStatus(status);
         rr.setDecManagerID(managerID);
         rrd.updateRequest(rr);

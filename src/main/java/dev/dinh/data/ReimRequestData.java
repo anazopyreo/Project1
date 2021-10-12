@@ -17,7 +17,7 @@ public class ReimRequestData implements ReimRequestDAO {
 
     @Override
     public void createRequest(ReimRequest rr) {
-        String sql = "insert into request (amount,category,status,req_date,req_emp_id) values (?,?,'PENDING',now(),?) returning request_id, req_date";
+        String sql = "insert into request (amount,category,status,req_emp_id) values (?,?,'PENDING',?) returning request_id, req_date";
         try(Connection c = connectionService.establishConnection();
             PreparedStatement pstmt = c.prepareStatement(sql);){
             pstmt.setDouble(1,rr.getAmount());
@@ -63,7 +63,6 @@ public class ReimRequestData implements ReimRequestDAO {
     public void updateRequest(ReimRequest rr) {
         String sql = "update request " +
                      "set status = ?, " +
-                     "dec_date = now(), " +
                      "dec_manager_id = ? " +
                      "where request_id = ? returning dec_date";
         try(Connection c = connectionService.establishConnection();
