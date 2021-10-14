@@ -22,7 +22,7 @@ amount decimal(15,2),
 category varchar(10),
 status varchar(10),
 req_date timestamp default now(),
-dec_date timestamp default now(),
+dec_date timestamp,
 req_emp_id integer references employee(employee_id),
 dec_manager_id integer references employee(employee_id)
 );
@@ -41,4 +41,7 @@ values('dr.who','ChangeMeNow!','Dr','','Who','thedoctor@primemover.not','MANAGER
 
 insert into employee(username,passwd,fname,mname,lname,pemail,employee_role)
 values('henry.potter','ChangeMeNow!','Henry','','Potter','not.harry@primemover.not','ASSOCIATE');
+
+
+
 

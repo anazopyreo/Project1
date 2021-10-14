@@ -1,5 +1,8 @@
 package dev.dinh.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.dinh.models.enums.Category;
 import dev.dinh.models.enums.ReimReqStatus;
 
@@ -10,11 +13,18 @@ import static dev.dinh.models.enums.ReimReqStatus.*;
 
 public class ReimRequest {
     int requestID;
+
+    @JsonDeserialize(using = MoneyDeserializer.class)
     double amount;
     Category category;
     ReimReqStatus status;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime reqDate; //request submission date
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime decDate; //decision date
+
     int reqEmployeeID; //requesting employee ID
     int decManagerID; //deciding manager ID
 

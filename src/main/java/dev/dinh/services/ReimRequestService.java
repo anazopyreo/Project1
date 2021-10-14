@@ -14,7 +14,7 @@ public class ReimRequestService implements ReimReqInterface {
     ReimRequestData rrd = new ReimRequestData();
 
     /**
-     * Creates a reimbursement request
+     * Forwards creation of Reimbursement Request to DAO
      * @param amount
      * @param category
      * @param reqEmployeeID
@@ -26,6 +26,18 @@ public class ReimRequestService implements ReimReqInterface {
         return rr;
     }
 
+    /**
+     * Retrieves list of ReimRequest Objects from DAO
+     * @param filter "all", "pending" or "resolved"
+     * @param employeeID 0 for all employees
+     * @return list of ReimRequest Objects
+     */
+    public List<ReimRequest> getRequestList(String filter, int employeeID){
+        return rrd.getRequestList(filter, employeeID);
+    }
+
+
+
 
     public ReimRequest getRequestById(int requestID){
         return rrd.getRequest(requestID);
@@ -36,10 +48,6 @@ public class ReimRequestService implements ReimReqInterface {
         rr.setStatus(status);
         rr.setDecManagerID(managerID);
         rrd.updateRequest(rr);
-    }
-
-    public List<ReimRequest> getRequests(String filter, int employeeID){
-        return rrd.getRequests(filter, employeeID);
     }
 
 }//end class

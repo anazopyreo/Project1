@@ -8,10 +8,13 @@ public interface ReimRequestDAO {
 
     void createRequest(ReimRequest rr);
 
+    List<ReimRequest> getRequestList(String filter, int employeeID);
+
+
+
+
     ReimRequest getRequest(int requestID);
 
     void updateRequest(ReimRequest rr);
-
-    List<ReimRequest> getRequests(String filter, int employeeID);
 }
 
