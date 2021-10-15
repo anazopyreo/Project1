@@ -25,8 +25,12 @@ public class ConnectionService {
         } else {
             url = "jdbc:postgresql://"+host+":5432/project1";
         }
-        String username = "postgres";
-        String password = "p4ssw0rd";
+
+        String username = System.getenv("PostgreSQLUname");
+        String password = System.getenv("PostgreSQLPword");
+
+//        String username = "postgres";
+//        String password = "p4ssw0rd";
         return DriverManager.getConnection(url, username, password);
     }
 }

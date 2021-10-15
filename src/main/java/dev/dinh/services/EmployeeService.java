@@ -2,14 +2,14 @@ package dev.dinh.services;
 
 import dev.dinh.data.EmployeeData;
 import dev.dinh.models.Employee;
-import dev.dinh.services.interfaces.EmployeeInterface;
+import dev.dinh.services.interfaces.EmployeeServiceInterface;
 
 import java.util.List;
 
 import static dev.dinh.models.enums.Role.ASSOCIATE;
 import static dev.dinh.models.enums.Role.MANAGER;
 
-public class EmployeeService implements EmployeeInterface {
+public class EmployeeService implements EmployeeServiceInterface {
 
     EmployeeData employeeData = new EmployeeData();
 
@@ -28,6 +28,7 @@ public class EmployeeService implements EmployeeInterface {
      */
     @Override
     public Employee getEmployeeByUname(String uname) {
+        System.out.println(uname);
         return employeeData.getEmployeeByUname(uname);
     }
 

@@ -3,9 +3,9 @@ package dev.dinh.services;
 import dev.dinh.data.EmployeeData;
 import dev.dinh.models.Employee;
 import dev.dinh.models.enums.Role;
-import dev.dinh.services.interfaces.AuthInterface;
+import dev.dinh.services.interfaces.AuthServiceInterface;
 
-public class AuthService implements AuthInterface {
+public class AuthService implements AuthServiceInterface {
 
     EmployeeData employeeData = new EmployeeData();
 

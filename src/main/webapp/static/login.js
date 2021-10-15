@@ -20,7 +20,6 @@ function attemptLogin(){
                 errorDiv.innerText = "invalid login credentials";
             } else if(xhr.status===200){
                 const token = xhr.getResponseHeader("Authorization");
-                console.log(token);
                 sessionStorage.setItem("token",token);
                 if(manager===true){
                     window.location.href="http://localhost:8082/Project1/static/manager.html";

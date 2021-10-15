@@ -5,8 +5,8 @@ document.getElementById("resolved-req-btn").addEventListener("click", get_resolv
 
 
 function logout(){
-sessionStorage.removeItem("token");
-window.location.href = "http://localhost:8082/Project1/static/login.html";
+    sessionStorage.removeItem("token");
+    window.location.href = "http://localhost:8082/Project1/static/login.html";
 }
 
 function get_resolved_requests(){
@@ -72,11 +72,27 @@ function submit_request(){
         fetch("http://localhost:8082/Project1/reimbursment", {method: "POST", headers: {"Authorization" : sessionStorage.getItem("token"),"Amount" : amount,"Category" : category}})
         .then(response => response.json())
         .then(showDiv());
-        // fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "pending"}})
-        // .then(response => response.json()).then(data => updateTable(data));
 
     } else {
         window.location.href = "http://localhost:8082/Project1/static/login.html";
     }
 
+}
+
+function displayProfile(){
+    const token = sessionStorage.getItem("token");
+    if("token"){
+        fetch("http://localhost:8082/Project1/employees", {method: "GET", headers: {"Authorization" : token}})
+        .then(response => response.json())
+        .then(data => displayData(data));
+    } else {
+        window.location.href = "http://localhost:8082/Project1/static/login.html";
+    }
+}
+
+function displayData(employee){
+    document.getElementById("employee-id").innerText = employee.employeeID;
+    document.getElementById("employee-name").innerText = `${employee.fname} ${employee.lname}`;
+    document.getElementById("personal-email").innerText = employee.pemail;
+    document.getElementById("work-email").innerText = employee.wemail;
 }

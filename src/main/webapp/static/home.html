@@ -13,11 +13,24 @@
     }
     </style>
 </head>
-<body>
-    <h1>Welcome to the homepage!</h1>
-    <h3>Employee Content</h3>
+<body onload="displayProfile()">
+    <h1>Welcome to the employee homepage!</h1>
 
-    <h4>Reimbursement Requests</h4>
+    <b>
+        <label for="employee-id">Employee ID:</label>
+        <output id="employee-id"></output>
+        <br>
+        <label for="employee-name">Employee Name:</label>
+        <output id="employee-name"></output>
+        <br>
+        <label for="personal-email">Personal Email:</label>
+        <output id="personal-email"></output>
+        <br>
+        <label for="work-email">Work Email:</label>
+        <output id="work-email"></output>
+    </b>
+
+    <h3>Reimbursement Requests</h3>
     <form id="request-form">
         <label for="categories">Select a category</label>
         <select name="categories" id="categories">

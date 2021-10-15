@@ -4,12 +4,12 @@ import dev.dinh.data.ReimRequestData;
 import dev.dinh.models.enums.Category;
 import dev.dinh.models.enums.ReimReqStatus;
 import dev.dinh.models.ReimRequest;
-import dev.dinh.services.interfaces.ReimReqInterface;
+import dev.dinh.services.interfaces.ReimServiceReqInterface;
 
 import java.util.List;
 
 
-public class ReimRequestService implements ReimReqInterface {
+public class ReimRequestService implements ReimServiceReqInterface {
 
     ReimRequestData rrd = new ReimRequestData();
 

@@ -16,6 +16,43 @@ public class EmployeeData implements EmployeeDAO {
     private static ConnectionService connectionService = new ConnectionService();
 
     /**
+     * Retrieves Employee object from database by username
+     * @param uname username
+     * @return Employee object
+     */
+    @Override
+    public Employee getEmployeeByUname(String uname) {
+        String sql = "select * from employee where username = ?";
+        Employee e = new Employee();
+        try (Connection c = connectionService.establishConnection();
+             PreparedStatement pstmt = c.prepareStatement(sql);) {
+            pstmt.setString(1,uname);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next() == true) {
+                e.setEmployeeID(rs.getInt("employee_id"));
+                e.setUname(rs.getString("username"));
+                e.setPassword(rs.getString("passwd"));
+                e.setFname(rs.getString("fname"));
+                e.setMname(rs.getString("mname"));
+                e.setLname(rs.getString("lname"));
+                e.setPemail(rs.getString("pemail"));
+                e.setPphone(rs.getString("pphone"));
+                e.setWphone(rs.getString("wphone"));
+                e.setHireDate(rs.getDate("hire_date").toLocalDate());
+                e.setRole(Role.valueOf(rs.getString("employee_role")));
+                e.setWemail(rs.getString("username") + "@revicher.not");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return e;
+    }
+
+
+
+
+
+    /**
      * returns a list of usernames that begin with the provided uname
      *
      * @param uname the username to be checked
@@ -103,34 +140,6 @@ public class EmployeeData implements EmployeeDAO {
             e.setRole(Role.valueOf(rs.getString("employee_role")));
             e.setWemail(rs.getString("username") + "@revicher.not");
         }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return e;
-    }
-
-    @Override
-    public Employee getEmployeeByUname(String uname) {
-        String sql = "select * from employee where username = ?";
-        Employee e = new Employee();
-        try (Connection c = connectionService.establishConnection();
-             PreparedStatement pstmt = c.prepareStatement(sql);) {
-            pstmt.setString(1,uname);
-            ResultSet rs = pstmt.executeQuery();
-            if(rs.next() == true) {
-                e.setEmployeeID(rs.getInt("employee_id"));
-                e.setUname(rs.getString("username"));
-                e.setPassword(rs.getString("passwd"));
-                e.setFname(rs.getString("fname"));
-                e.setMname(rs.getString("mname"));
-                e.setLname(rs.getString("lname"));
-                e.setPemail(rs.getString("pemail"));
-                e.setPphone(rs.getString("pphone"));
-                e.setWphone(rs.getString("wphone"));
-                e.setHireDate(rs.getDate("hire_date").toLocalDate());
-                e.setRole(Role.valueOf(rs.getString("employee_role")));
-                e.setWemail(rs.getString("username") + "@revicher.not");
-            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
