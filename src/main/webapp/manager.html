@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 0px 5px
+        }
+        </style>
+    </head>
+<body>
+<h1>Manager Home</h1>
+    <main>
+
+        <button id = "logout-btn">Log out</button>
+        <br><br>
+        <button id="pending-req-btn">View Pending Requests</button> &nbsp
+        <button id="resolved-req-btn">View Resolved Requests</button> &nbsp
+        <button id="emp-btn">View Employees</button>
+        <br><br>
+        <button hidden id="resolve">Resolve Requests</button>
+        <br><br>
+        <table>
+            <thead id="display-table-head">
+            </thead>
+            <tbody id="display-table-body">
+            </tbody>
+        </table>
+        <br>
+        <ouput hidden id="rowCount"></ouput>
+    </main>
+
+<script src="manager.js"></script>
+</body>
+</html>
