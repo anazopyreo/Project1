@@ -14,7 +14,6 @@ import static dev.dinh.models.enums.ReimReqStatus.*;
 public class ReimRequest {
     int requestID;
 
-    @JsonDeserialize(using = MoneyDeserializer.class)
     double amount;
     Category category;
     ReimReqStatus status;

@@ -20,6 +20,7 @@ public class EmployeeServlet extends HttpServlet {
     AuthService as = new AuthService();
     EmployeeService es = new EmployeeService();
 
+    //gets employee profile
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
         String authToken = req.getHeader("Authorization");
         if(!as.validToken(authToken)){

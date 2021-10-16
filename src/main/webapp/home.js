@@ -6,17 +6,16 @@ document.getElementById("resolved-req-btn").addEventListener("click", get_resolv
 
 function logout(){
     sessionStorage.removeItem("token");
-    window.location.href = "http://localhost:8082/Project1/static/login.html";
+    window.location.href = "login.html";
+//    window.location.href = "http://localhost:8082/Project1/static/login.html";
 }
 
 function get_resolved_requests(){
     const token = sessionStorage.getItem("token");
     if(token){
-        fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "resolved"}})
+        fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "resolved"}})
+//        fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "resolved"}})
         .then(response => response.json())
-        // .then(setHidden(false))
-        // .then(document.getElementByIdById("manager-id").hidden = false)
-        // .then(document.getElementByIdById("decision-date").hidden = false)
         .then(data => updateTable(data));
     }
 }
@@ -24,11 +23,9 @@ function get_resolved_requests(){
 function get_pending_requests(){
     const token = sessionStorage.getItem("token");
     if(token){
-        fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "pending"}})
+        fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "pending"}})
+//        fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "pending"}})
         .then(response => response.json())
-        // .then(setHidden(true))
-        // .then(document.getElementByIdById("manager-id").hidden = true)
-        // .then(document.getElementByIdById("decision-date").hidden = true)
         .then(data => updateTable(data));
     }
 }
@@ -69,12 +66,14 @@ function submit_request(){
     const category = document.getElementById("categories").value;
 
     if(token){
-        fetch("http://localhost:8082/Project1/reimbursment", {method: "POST", headers: {"Authorization" : sessionStorage.getItem("token"),"Amount" : amount,"Category" : category}})
+        fetch("reimbursment", {method: "POST", headers: {"Authorization" : sessionStorage.getItem("token"),"Amount" : amount,"Category" : category}})
+//        fetch("http://localhost:8082/Project1/reimbursment", {method: "POST", headers: {"Authorization" : sessionStorage.getItem("token"),"Amount" : amount,"Category" : category}})
         .then(response => response.json())
         .then(showDiv());
 
     } else {
-        window.location.href = "http://localhost:8082/Project1/static/login.html";
+        window.location.href = "login.html";
+//        window.location.href = "http://localhost:8082/Project1/static/login.html";
     }
 
 }
@@ -82,11 +81,13 @@ function submit_request(){
 function displayProfile(){
     const token = sessionStorage.getItem("token");
     if("token"){
-        fetch("http://localhost:8082/Project1/employees", {method: "GET", headers: {"Authorization" : token}})
+        fetch("employees", {method: "GET", headers: {"Authorization" : token}})
+//        fetch("http://localhost:8082/Project1/employees", {method: "GET", headers: {"Authorization" : token}})
         .then(response => response.json())
         .then(data => displayData(data));
     } else {
-        window.location.href = "http://localhost:8082/Project1/static/login.html";
+        window.location.href = "login.html";
+//        window.location.href = "http://localhost:8082/Project1/static/login.html";
     }
 }
 

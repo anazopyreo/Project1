@@ -1,6 +1,7 @@
 package dev.dinh.services;
 
 import dev.dinh.data.EmployeeData;
+import dev.dinh.data.daos.EmployeeDAO;
 import dev.dinh.models.Employee;
 import dev.dinh.services.interfaces.EmployeeServiceInterface;
 
@@ -11,7 +12,7 @@ import static dev.dinh.models.enums.Role.MANAGER;
 
 public class EmployeeService implements EmployeeServiceInterface {
 
-    EmployeeData employeeData = new EmployeeData();
+    EmployeeDAO employeeData = new EmployeeData();
 
     public Employee getEmployeeByID(int employeeID){
         return employeeData.getEmployeeByID(employeeID);

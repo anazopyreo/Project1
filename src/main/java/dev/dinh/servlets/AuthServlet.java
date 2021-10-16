@@ -1,6 +1,5 @@
 package dev.dinh.servlets;
 
-import dev.dinh.Application;
 import dev.dinh.models.Employee;
 import dev.dinh.services.AuthService;
 import dev.dinh.services.EmployeeService;
@@ -20,8 +19,9 @@ public class AuthServlet extends HttpServlet{
 
     }
 
+    //authenticates employee login
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 

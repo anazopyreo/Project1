@@ -32,4 +32,24 @@
         <url-pattern>/reimbursment</url-pattern>
     </servlet-mapping>
 
+    <!--Manager Reimbursement servlet-->
+    <servlet>
+        <servlet-name>ReimReqManagerServlet</servlet-name>
+        <servlet-class>dev.dinh.servlets.ReimReqManagerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReimReqManagerServlet</servlet-name>
+        <url-pattern>/managerReimReq</url-pattern>
+    </servlet-mapping>
+
+    <!--Manager Reimbursement servlet-->
+    <servlet>
+        <servlet-name>ManagerServlet</servlet-name>
+        <servlet-class>dev.dinh.servlets.ManagerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManagerServlet</servlet-name>
+        <url-pattern>/manager</url-pattern>
+    </servlet-mapping>
+
 </web-app>

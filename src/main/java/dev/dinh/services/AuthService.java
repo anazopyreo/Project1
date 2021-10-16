@@ -1,13 +1,14 @@
 package dev.dinh.services;
 
 import dev.dinh.data.EmployeeData;
+import dev.dinh.data.daos.EmployeeDAO;
 import dev.dinh.models.Employee;
 import dev.dinh.models.enums.Role;
 import dev.dinh.services.interfaces.AuthServiceInterface;
 
 public class AuthService implements AuthServiceInterface {
 
-    EmployeeData employeeData = new EmployeeData();
+    EmployeeDAO employeeData = new EmployeeData();
 
     public boolean isManager(String token){
         if("MANAGER".equals(token.split(":")[1])){

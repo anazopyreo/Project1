@@ -19,27 +19,46 @@ public class ReimRequestServlet extends HttpServlet {
     AuthService as = new AuthService();
     ReimRequestService rrs = new ReimRequestService();
 
+    //gets list of reimrequest objects
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        boolean managerReq = Boolean.parseBoolean(req.getHeader("managerReq"));
         String authToken = req.getHeader("Authorization");
         String status = req.getHeader("status");
+        boolean isManager = false;
+        int employeeID;
         if (!as.validToken(authToken)) {
             resp.sendError(400, "Improper token format, unable to fulfill request");
-        }else if(!as.isEmployee(authToken)){
-                resp.sendError(403,"Unable to authenticate user");
+            return;
+        }
+        if(!as.isEmployee(authToken)){
+            resp.sendError(401,"Unable to authenticate user");
+            return;
+        }
+        if(managerReq){
+            if(!as.isManager(authToken)){
+                resp.sendError(403,"Manager access only");
+                return;
+            }
+            isManager = true;
+        }
+        if(isManager){
+            employeeID = 0;
         } else {
+            employeeID = Integer.parseInt(authToken.split(":")[0]);
+        }
             try (PrintWriter pw = resp.getWriter()) {
-                List<ReimRequest> requests = rrs.getRequestList(status,Integer.parseInt(authToken.split(":")[0]));
+                List<ReimRequest> requests = rrs.getRequestList(status,employeeID);
                 ObjectMapper om = new ObjectMapper();
                 om.registerModule(new JavaTimeModule());
                 String requestJson = om.writeValueAsString(requests);
                 pw.write(requestJson);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
         }
     }
 
+    //creates reimrequest object
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         String authToken = req.getHeader("Authorization");

@@ -1,16 +1,21 @@
 package dev.dinh.data.daos;
 
 import dev.dinh.models.Employee;
+import dev.dinh.models.enums.Role;
 
 import java.util.List;
 
 public interface EmployeeDAO {
 
-    public void createEmployee(Employee e);
+    void createEmployee(Employee e);
 
-    public Employee getEmployeeByID(int employeeID);
+    Employee getEmployeeByID(int employeeID);
 
-    public Employee getEmployeeByUname(String uname);
+    Employee getEmployeeByUname(String uname);
 
-    public List<Employee> getAllEmployees();
+    List<Employee> getAllEmployees();
+
+    void setRole(int employeeID, Role role);
+
+    List<String> getUnames(String uname);
 }

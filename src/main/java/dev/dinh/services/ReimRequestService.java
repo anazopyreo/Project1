@@ -1,6 +1,7 @@
 package dev.dinh.services;
 
 import dev.dinh.data.ReimRequestData;
+import dev.dinh.data.daos.ReimRequestDAO;
 import dev.dinh.models.enums.Category;
 import dev.dinh.models.enums.ReimReqStatus;
 import dev.dinh.models.ReimRequest;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class ReimRequestService implements ReimServiceReqInterface {
 
-    ReimRequestData rrd = new ReimRequestData();
+    ReimRequestDAO rrd = new ReimRequestData();
 
     /**
      * Forwards creation of Reimbursement Request to DAO

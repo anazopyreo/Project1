@@ -100,6 +100,25 @@ public class ReimRequestData implements ReimRequestDAO {
         return "";
     }
 
+    @Override
+    public void updateRequest(ReimRequest rr) {
+        String sql = "update request " +
+                "set status = ?, " +
+                "dec_manager_id = ?, " +
+                "dec_date = now()" +
+                "where request_id = ? returning dec_date";
+        try(Connection c = connectionService.establishConnection();
+            PreparedStatement pstmt = c.prepareStatement(sql);){
+            pstmt.setString(1,rr.getStatus().toString());
+            pstmt.setInt(2,rr.getDecManagerID());
+            pstmt.setInt(3,rr.getRequestID());
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+//            rr.setDecDate(rs.getTimestamp("dec_date").toLocalDateTime());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 
 
@@ -128,22 +147,4 @@ public class ReimRequestData implements ReimRequestDAO {
         return rr;
     }
 
-    @Override
-    public void updateRequest(ReimRequest rr) {
-        String sql = "update request " +
-                     "set status = ?, " +
-                     "dec_manager_id = ? " +
-                     "where request_id = ? returning dec_date";
-        try(Connection c = connectionService.establishConnection();
-            PreparedStatement pstmt = c.prepareStatement(sql);){
-            pstmt.setString(1,rr.getStatus().toString());
-            pstmt.setInt(2,rr.getDecManagerID());
-            pstmt.setInt(3,rr.getRequestID());
-            ResultSet rs = pstmt.executeQuery();
-            rs.next();
-//            rr.setDecDate(rs.getTimestamp("dec_date").toLocalDateTime());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
 }//end class

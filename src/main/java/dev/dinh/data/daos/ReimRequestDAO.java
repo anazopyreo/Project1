@@ -10,11 +10,11 @@ public interface ReimRequestDAO {
 
     List<ReimRequest> getRequestList(String filter, int employeeID);
 
+    void updateRequest(ReimRequest rr);
 
 
 
     ReimRequest getRequest(int requestID);
 
-    void updateRequest(ReimRequest rr);
 }
 

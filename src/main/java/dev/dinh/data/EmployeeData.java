@@ -48,6 +48,28 @@ public class EmployeeData implements EmployeeDAO {
         return e;
     }
 
+    /**
+     * Verifies that an employee with the provided ID is a manager
+     * @param employeeID
+     * @return true if the employee is a manager
+     */
+    public boolean isManager(int employeeID){
+        String sql = "select employee_role from employee where employee_id = ?";
+        Role r = null;
+        try(Connection c = connectionService.establishConnection();
+            PreparedStatement pstmt = c.prepareStatement(sql)){
+            pstmt.setInt(1,employeeID);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                r = Role.valueOf(rs.getString("employee_role"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return r == MANAGER;
+    }
+
+
 
 
 
@@ -72,27 +94,6 @@ public class EmployeeData implements EmployeeDAO {
             throwables.printStackTrace();
         }
         return unames;
-    }
-
-    /**
-     * Verifies that an employee with the provided ID is a manager
-     * @param employeeID
-     * @return true if the employee is a manager
-     */
-    public boolean isManager(int employeeID){
-        String sql = "select employee_role from employee where employee_id = ?";
-        Role r = null;
-        try(Connection c = connectionService.establishConnection();
-            PreparedStatement pstmt = c.prepareStatement(sql)){
-            pstmt.setInt(1,employeeID);
-            ResultSet rs = pstmt.executeQuery();
-            if(rs.next()) {
-                r = Role.valueOf(rs.getString("employee_role"));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return r == MANAGER;
     }
 
     @Override
