@@ -1,0 +1,6 @@
+[TRACE] 2021-10-17 00:21:31.136 [http-nio-8082-exec-5] AuthServlet - doPost called - authenticating employee
+[TRACE] 2021-10-17 00:21:31.696 [http-nio-8082-exec-5] AuthServlet - passed authentication
+[TRACE] 2021-10-17 00:22:43.820 [http-nio-8082-exec-3] AuthServlet - doPost called - authenticating employee
+[TRACE] 2021-10-17 00:22:44.337 [http-nio-8082-exec-3] AuthServlet - passed authentication
+[TRACE] 2021-10-17 00:25:11.638 [http-nio-8082-exec-3] AuthServlet - doPost called - authenticating employee
+[TRACE] 2021-10-17 00:25:12.151 [http-nio-8082-exec-3] AuthServlet - passed authentication
