@@ -22,13 +22,13 @@ public class ReimRequestServiceTest {
 
     @BeforeEach
     public void runSetUp(){
-        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test")) {
-            RunScript.execute(connection, new FileReader("sql-setup.sql"));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test")) {
+//            RunScript.execute(connection, new FileReader("sql-setup.sql"));
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
 //Ignoring test as H2 database does not work with returning values in insert statements

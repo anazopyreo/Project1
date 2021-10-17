@@ -19,18 +19,23 @@ public class ConnectionService {
         }
 
         String url;
-        String host = System.getenv("DB_HOST");
+        String username;
+        String password;
+        String host = System.getenv("DB_URL");
+        username = System.getenv("PostgreSQLUname");
+        password = System.getenv("PostgreSQLPword");
         if(host==null){
-            url = "jdbc:postgresql://localhost:5432/project1";
+            url = "jdbc:postgresql://project1.cx1u2au4pz0d.us-east-2.rds.amazonaws.com:5432/postgres";
         } else {
-            url = "jdbc:postgresql://"+host+":5432/project1";
+            url = host;
         }
-
-        String username = System.getenv("PostgreSQLUname");
-        String password = System.getenv("PostgreSQLPword");
-
-//        String username = "postgres";
-//        String password = "p4ssw0rd";
+        System.out.println(url);
+        if(username==null) {
+            username = "postgres";
+        }
+        if(password==null) {
+            password = "C3rb3rus";
+        }
         return DriverManager.getConnection(url, username, password);
     }
 }
