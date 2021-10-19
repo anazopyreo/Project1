@@ -31,6 +31,9 @@
         <output id="work-email"></output>
     </b>
 
+    <br><br>
+    <button id="manager-page-btn">Manager Functions</button> &nbsp;
+    <button id="logout-btn">Log out</button>
     <h3>Reimbursement Requests</h3>
     <form id="request-form">
         <label for="categories">Select a category</label>
@@ -43,13 +46,14 @@
             <option value="MIXED">Mixed</option>
             <option value="OTHER">Other</option>
         </select>
-        <br>
+        <br><br>
         <label for="amount">Enter the amount</label>
         <input id="amount" type="number" step="0.01" min = "0">
-        <br>
+        <!-- <br><br> -->
+        &nbsp;
         <button id="submit-req-btn">Submit request</button>
     </form>
-    <br>
+    <br><br>
     <div hidden id="message-div"></div>
 
     <button id="pending-req-btn">View Pending Requests</button> &nbsp
@@ -71,7 +75,6 @@
 
         </tbody>
     </table>
-    <br><button id="logout-btn">Log out</button>
     <script src="home.js"></script>
 </body>
 </html>
