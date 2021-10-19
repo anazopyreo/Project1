@@ -29,6 +29,7 @@ public class ConnectionService {
         } else {
             url = host;
         }
+        System.out.println(url);
         if(username==null) {
             username = "postgres";
         }
