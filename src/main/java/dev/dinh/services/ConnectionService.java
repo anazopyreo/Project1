@@ -18,6 +18,7 @@ public class ConnectionService {
             e.printStackTrace();
         }
 
+        //useless comment
         String url;
         String username;
         String password;
