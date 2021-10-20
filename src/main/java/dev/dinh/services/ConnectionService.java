@@ -25,12 +25,15 @@ public class ConnectionService {
         String host = System.getenv("DB_URL");
         username = System.getenv("PostgreSQLUname");
         password = System.getenv("PostgreSQLPword");
+        System.out.println("databse: "+ host);
+        System.out.println("username: "+ username);
+        System.out.println("passwrod: "+ password);
+
         if(host==null){
             url = "jdbc:postgresql://project1.cx1u2au4pz0d.us-east-2.rds.amazonaws.com:5432/postgres";
         } else {
             url = host;
         }
-        System.out.println(url);
         if(username==null) {
             username = "postgres";
         }

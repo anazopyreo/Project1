@@ -18,13 +18,32 @@ public class AuthServlet extends HttpServlet{
     EmployeeService es = new EmployeeService();
     AuthService as = new AuthService();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response){}
+    //verifies token belongs to valid manager
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        logger.trace("authenticating token");
+
+        String authToken = req.getHeader("Authorization");
+
+        if(!as.validToken(authToken)){
+            logger.error("improper token format");
+            resp.sendError(400, "Improper token format, unable to fulfill request");
+        }else if(!as.isEmployee(authToken)){
+            logger.error("employee id not in system");
+            resp.sendError(403,"Token does not belong to a current employee");
+        }else if(!as.isManager(authToken)) {
+            logger.error("token does not belong to a current manager");
+            resp.sendError(403, "Invalid user role for current request");
+        }else{
+            logger.trace("passed authentication");
+            resp.setStatus(200);
+        }
+    }
 
     //authenticates employee login
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        logger.trace("doPost called - authenticating employee");
+        logger.trace("authenticating employee");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
