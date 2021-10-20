@@ -91,7 +91,7 @@ function submit_request(){
         .then(showDiv());
 
     } else {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
 //        window.location.href = "http://localhost:8082/Project1/static/login.html";
     }
 

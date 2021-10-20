@@ -34,7 +34,7 @@ public class ConnectionService {
             username = "postgres";
         }
         if(password==null) {
-            password = "p4ssw0rd";
+            password = "C3rb3rus";
         }
         return DriverManager.getConnection(url, username, password);
     }
