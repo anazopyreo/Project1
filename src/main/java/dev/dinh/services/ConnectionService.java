@@ -21,20 +21,20 @@ public class ConnectionService {
         String url;
         String username;
         String password;
-        String host = System.getenv("DB_URL");
-        username = System.getenv("PostgreSQLUname");
-        password = System.getenv("PostgreSQLPword");
-        if(host==null){
+//        String host = System.getenv("DB_URL");
+//        username = System.getenv("PostgreSQLUname");
+//        password = System.getenv("PostgreSQLPword");
+//        if(host==null){
             url = "jdbc:postgresql://project1.cx1u2au4pz0d.us-east-2.rds.amazonaws.com:5432/postgres";
-        } else {
-            url = host;
-        }
-        if(username==null) {
+//        } else {
+//            url = host;
+//        }
+//        if(username==null) {
             username = "postgres";
-        }
-        if(password==null) {
+//        }
+//        if(password==null) {
             password = "C3rb3rus";
-        }
+//        }
         return DriverManager.getConnection(url, username, password);
     }
 }
