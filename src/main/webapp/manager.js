@@ -6,7 +6,7 @@ document.getElementById("emp-btn").addEventListener("click", get_employees);
 
 function logout(){
     sessionStorage.removeItem("token");
-    window.location.href = "index.html";
+    window.location.href = "login.html";
 }
 
 function get_resolved_requests(){
