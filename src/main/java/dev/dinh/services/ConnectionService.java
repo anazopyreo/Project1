@@ -30,12 +30,11 @@ public class ConnectionService {
         } else {
             url = host;
         }
-        System.out.println(url);
         if(username==null) {
             username = "postgres";
         }
         if(password==null) {
-            password = "C3rb3rus";
+            password = "p4ssw0rd";
         }
         return DriverManager.getConnection(url, username, password);
     }

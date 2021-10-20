@@ -2,6 +2,7 @@ document.getElementById("logout-btn").addEventListener("click", logout);
 document.getElementById("submit-req-btn").addEventListener("click", submit_request);
 document.getElementById("pending-req-btn").addEventListener("click", get_pending_requests);
 document.getElementById("resolved-req-btn").addEventListener("click", get_resolved_requests);
+document.getElementById("manager-page-btn").addEventListener("click", forward_to_manager);
 
 
 function logout(){
@@ -9,6 +10,24 @@ function logout(){
     window.location.href = "login.html";
 //    window.location.href = "http://localhost:8082/Project1/static/login.html";
 }
+
+function forward_to_manager(){
+    const token = sessionStorage.getItem("token");
+    if(token){
+        fetch("login",{method: "GET", headers: {"Authorization": sessionStorage.getItem("token")}})
+        .then(response => response.json())
+        .then(response => {
+            if(response.ok){
+                window.location.href = "manager.html";
+            }else{
+                throw new Error("failed to authenticate token");
+            }
+            return response.blob();
+        })
+        .catch(error => console.log(error.message));
+    }
+}
+
 
 function get_resolved_requests(){
     const token = sessionStorage.getItem("token");
