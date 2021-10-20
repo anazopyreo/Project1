@@ -21,7 +21,7 @@ public class ConnectionService {
         String url;
         String username;
         String password;
-        String url = System.getenv("DB_URL");
+        url = System.getenv("DB_URL");
         username = System.getenv("PostgreSQLUname");
         password = System.getenv("PostgreSQLPword");
 //            url = "jdbc:postgresql://project1.cx1u2au4pz0d.us-east-2.rds.amazonaws.com:5432/postgres";
