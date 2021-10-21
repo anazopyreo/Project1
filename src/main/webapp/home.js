@@ -55,7 +55,9 @@ function setHidden(value){
 }
 
 function showDiv(){
-    document.getElementById("request-form").reset();
+    document.getElementById("amount").value = "";
+    document.getElementById("categories").selectedIndex = 0;
+
     const messageDiv = document.getElementById("message-div");
     messageDiv.hidden = false;
     messageDiv.innerText = "Request submitted";
@@ -69,6 +71,7 @@ function submit_request(){
     if(token){
         fetch("reimbursment", {method: "POST", headers: {"Authorization" : sessionStorage.getItem("token"),"Amount" : amount,"Category" : category}})
         .then(response => response.json())
+        .then(get_pending_requests())
         .then(showDiv());
 
     } else {
