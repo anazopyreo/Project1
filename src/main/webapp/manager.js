@@ -16,6 +16,8 @@ function get_resolved_requests(){
         fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),status : "resolved","managerReq" : "true"}})
         .then(response => response.json())
         .then(data => updateResolvedTable(data));
+    } else {
+        window.location.href = "index.html";
     }
 }
 
@@ -25,6 +27,8 @@ function get_pending_requests(){
         fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),status : "pending","managerReq" : "true"}})
         .then(response => response.json())
         .then(data => updatePendingTable(data));
+    } else {
+        window.location.href = "index.html";
     }
 }
 
@@ -34,6 +38,8 @@ function get_employees(){
         fetch("manager", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token")}})
         .then(response => response.json())
         .then(data => updateEmployeesTable(data));
+    } else {
+        window.location.href = "index.html";
     }
 }
 
@@ -173,6 +179,8 @@ function forward_to_home(){
             return Promise.reject(response);
             })
         .catch(error => console.log(error.message));
+    } else {
+        window.location.href = "index.html";
     }
 }
 

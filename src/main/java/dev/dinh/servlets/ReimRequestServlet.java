@@ -26,6 +26,7 @@ public class ReimRequestServlet extends HttpServlet {
         String authToken = req.getHeader("Authorization");
         String status = req.getHeader("status");
         boolean isManager = false;
+        int managerID;
         int employeeID;
         if (!as.validToken(authToken)) {
             resp.sendError(400, "Improper token format, unable to fulfill request");
@@ -43,12 +44,14 @@ public class ReimRequestServlet extends HttpServlet {
             isManager = true;
         }
         if(isManager){
+            managerID =  Integer.parseInt(authToken.split(":")[0]);
             employeeID = 0;
         } else {
+            managerID = 0;
             employeeID = Integer.parseInt(authToken.split(":")[0]);
         }
             try (PrintWriter pw = resp.getWriter()) {
-                List<ReimRequest> requests = rrs.getRequestList(status,employeeID);
+                List<ReimRequest> requests = rrs.getRequestList(status,employeeID,managerID);
                 ObjectMapper om = new ObjectMapper();
                 om.registerModule(new JavaTimeModule());
                 String requestJson = om.writeValueAsString(requests);

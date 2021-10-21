@@ -8,7 +8,6 @@ document.getElementById("manager-page-btn").addEventListener("click", forward_to
 function logout(){
     sessionStorage.removeItem("token");
     window.location.href = "index.html";
-//    window.location.href = "http://localhost:8082/Project1/static/login.html";
 }
 
 function forward_to_manager(){
@@ -21,21 +20,21 @@ function forward_to_manager(){
                 return response.json();
             }
             throw new Error("failed to authenticate token");
-            return Promise.reject(response);
             })
         .catch(error => console.log(error.message));
+    } else {
+        window.location.href = "index.html";
     }
 }
-
-
 
 function get_resolved_requests(){
     const token = sessionStorage.getItem("token");
     if(token){
         fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "resolved"}})
-//        fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "resolved"}})
         .then(response => response.json())
         .then(data => updateResolvedTable(data));
+    } else {
+        window.location.href = "index.html";
     }
 }
 
@@ -43,9 +42,10 @@ function get_pending_requests(){
     const token = sessionStorage.getItem("token");
     if(token){
         fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "pending"}})
-//        fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "pending"}})
         .then(response => response.json())
         .then(data => updatePendingTable(data));
+    } else {
+        window.location.href = "index.html";
     }
 }
 
@@ -53,24 +53,6 @@ function setHidden(value){
     document.getElementByIdById("manager-id").hidden = value;
     document.getElementByIdById("decision-date").hidden = value;
 }
-
-// function updateTable(data){
-//     let tableBody = document.getElementById("request-table");
-//     while(tableBody.hasChildNodes()){
-//         tableBody.removeChild(tableBody.firstChild);
-//     }
-//     for (item of data){
-//         let tableRow = document.createElement("tr");
-//         tableRow.innerHTML = `<td style="text-align:right">${item.requestID}</td>
-//         <td style="text-align:right">\$${item.amount.toFixed(2)}</td>
-//         <td>${item.category}</td>
-//         <td>${item.status}</td>
-//         <td>${item.reqDate}</td>
-//         <td>${item.decDate}</td>
-//         <td>${item.decManagerID}</td>`
-//         tableBody.appendChild(tableRow);
-//     }
-// }
 
 function showDiv(){
     document.getElementById("request-form").reset();
@@ -86,13 +68,11 @@ function submit_request(){
 
     if(token){
         fetch("reimbursment", {method: "POST", headers: {"Authorization" : sessionStorage.getItem("token"),"Amount" : amount,"Category" : category}})
-//        fetch("http://localhost:8082/Project1/reimbursment", {method: "POST", headers: {"Authorization" : sessionStorage.getItem("token"),"Amount" : amount,"Category" : category}})
         .then(response => response.json())
         .then(showDiv());
 
     } else {
         window.location.href = "index.html";
-//        window.location.href = "http://localhost:8082/Project1/static/login.html";
     }
 
 }
@@ -101,12 +81,10 @@ function displayProfile(){
     const token = sessionStorage.getItem("token");
     if("token"){
         fetch("employees", {method: "GET", headers: {"Authorization" : token}})
-//        fetch("http://localhost:8082/Project1/employees", {method: "GET", headers: {"Authorization" : token}})
         .then(response => response.json())
         .then(data => displayData(data));
     } else {
-        window.location.href = "login.html";
-//        window.location.href = "http://localhost:8082/Project1/static/login.html";
+        window.location.href = "index.html";
     }
 }
 

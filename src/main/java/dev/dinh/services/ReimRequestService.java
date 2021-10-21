@@ -33,8 +33,8 @@ public class ReimRequestService implements ReimServiceReqInterface {
      * @param employeeID 0 for all employees
      * @return list of ReimRequest Objects
      */
-    public List<ReimRequest> getRequestList(String filter, int employeeID){
-        return rrd.getRequestList(filter, employeeID);
+    public List<ReimRequest> getRequestList(String filter, int employeeID, int managerID){
+        return rrd.getRequestList(filter, employeeID, managerID);
     }
 
 

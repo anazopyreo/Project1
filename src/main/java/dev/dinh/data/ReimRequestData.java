@@ -10,6 +10,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ReimRequestData implements ReimRequestDAO {
 
@@ -46,23 +47,32 @@ public class ReimRequestData implements ReimRequestDAO {
      * @return List of ReimRequest objects
      */
     @Override
-    public List<ReimRequest> getRequestList(String filter, int employeeID) {
+    public List<ReimRequest> getRequestList(String filter, int employeeID, int managerID) {
         List<ReimRequest> requests = new ArrayList<>();
         StringBuilder bob = new StringBuilder("select * from request ");
         if(!"all".equals(filter)){
-            bob.append(getClause(filter));
+            bob.append(" where status = '" + filter.toUpperCase()+"'");
             if(employeeID > 0){
                 bob.append(" and req_emp_id = ?");
+            }
+            else if(managerID > 0){
+                bob.append(" and req_emp_id != ?");
             }
         }
         else if(employeeID > 0){
             bob.append(" where req_emp_id = ?");
+        }
+        else if(managerID > 0){
+            bob.append(" where dec_manager_id != ?");
         }
         String sql = bob.append(" order by req_date desc").toString();
         try(Connection c = connectionService.establishConnection();
             PreparedStatement pstmt = c.prepareStatement(sql)){
             if(employeeID > 0){
                 pstmt.setInt(1,employeeID);
+            }
+            if(managerID > 0){
+                pstmt.setInt(1,managerID);
             }
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
