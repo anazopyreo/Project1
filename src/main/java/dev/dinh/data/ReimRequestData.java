@@ -7,10 +7,8 @@ import dev.dinh.models.enums.ReimReqStatus;
 import dev.dinh.services.ConnectionService;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ReimRequestData implements ReimRequestDAO {
 
@@ -19,9 +17,10 @@ public class ReimRequestData implements ReimRequestDAO {
     /**
      * Adds ReimRequest Object to the database
      * @param rr ReimRequest object
+     * @return
      */
     @Override
-    public void createRequest(ReimRequest rr) {
+    public ReimRequest createRequest(ReimRequest rr) {
         String sql = "insert into request (amount,category,status,req_emp_id) values (?,?,'PENDING',?) returning request_id, req_date";
         try(Connection c = connectionService.establishConnection();
             PreparedStatement pstmt = c.prepareStatement(sql);){
@@ -32,12 +31,10 @@ public class ReimRequestData implements ReimRequestDAO {
             rs.next();
             rr.setRequestID(rs.getInt("request_id"));
             rr.setReqDate(rs.getTimestamp("req_date").toLocalDateTime());
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
+        return rr;
     }
 
     /**
@@ -93,6 +90,63 @@ public class ReimRequestData implements ReimRequestDAO {
         }
         return requests;
     }//end getList
+
+    @Override
+    public List<ReimRequest> getRequestListWithNames(String filter, int employeeID, String role) {
+//        int managerID;
+//        if("associate".equals(role)){
+//            managerID = 0;
+//        }
+//        else if("manager".equals(role)){
+//            managerID = employeeID;
+//            employeeID = 0;
+//        }
+//        List<ReimRequest> requests = new ArrayList<>();
+//        StringBuilder bob = new StringBuilder("select request.*, employee.fname, employee,lname from request join employee");
+//        if(!"all".equals(filter)){
+//            bob.append(getClause(filter));
+//            if(employeeID > 0){
+//                bob.append(" and req_emp_id = ?");
+//            }
+//            else if(managerID > 0){
+//                bob.append(" and req_emp_id != ?");
+//            }
+//        }
+//        else if(employeeID > 0){
+//            bob.append(" where req_emp_id = ?");
+//        }
+//        else if(managerID > 0){
+//            bob.append(" where dec_manager_id != ?");
+//        }
+//        String sql = bob.append(" order by req_date desc").toString();
+//        try(Connection c = connectionService.establishConnection();
+//            PreparedStatement pstmt = c.prepareStatement(sql)){
+//            if(employeeID > 0){
+//                pstmt.setInt(1,employeeID);
+//            }
+//            if(managerID > 0){
+//                pstmt.setInt(1,managerID);
+//            }
+//            ResultSet rs = pstmt.executeQuery();
+//            while(rs.next()){
+//                ReimRequest rr = new ReimRequest();
+//                rr.setRequestID(rs.getInt("request_id"));
+//                rr.setAmount(rs.getDouble("amount"));
+//                rr.setCategory(Category.valueOf(rs.getString("category")));
+//                rr.setStatus(ReimReqStatus.valueOf(rs.getString("status")));
+//                rr.setReqDate(rs.getTimestamp("req_date").toLocalDateTime());
+//                if(null != rs.getTimestamp("dec_date")){
+//                    rr.setDecDate(rs.getTimestamp("dec_date").toLocalDateTime());}
+//                rr.setReqEmployeeID(rs.getInt("req_emp_id"));
+//                rr.setDecManagerID((rs.getInt("dec_manager_id")));
+//                requests.add(rr);
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return requests;
+        return null;
+    }
 
     /**
      * Provides a clause string for retrieving pending or resolved ReimRequest objects from the database

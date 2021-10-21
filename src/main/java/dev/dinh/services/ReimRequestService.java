@@ -23,8 +23,8 @@ public class ReimRequestService implements ReimServiceReqInterface {
      */
     public ReimRequest createReq(double amount, Category category, int reqEmployeeID){
         ReimRequest rr = new ReimRequest(amount,category,reqEmployeeID);
-        rrd.createRequest(rr);
-        return rr;
+        ReimRequest returnReq = rrd.createRequest(rr);
+        return returnReq;
     }
 
     /**

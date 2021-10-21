@@ -71,7 +71,6 @@ function submit_request(){
     if(token){
         fetch("reimbursment", {method: "POST", headers: {"Authorization" : sessionStorage.getItem("token"),"Amount" : amount,"Category" : category}})
         .then(response => response.json())
-        .then(get_pending_requests())
         .then(showDiv());
 
     } else {

@@ -52,3 +52,12 @@
 [TRACE] 2021-10-21 01:30:31.995 [http-nio-8082-exec-1] AuthServlet - passed authentication
 [TRACE] 2021-10-21 01:31:55.235 [http-nio-8082-exec-2] AuthServlet - authenticating employee
 [TRACE] 2021-10-21 01:31:55.764 [http-nio-8082-exec-2] AuthServlet - passed authentication
+[TRACE] 2021-10-21 02:05:10.962 [http-nio-8082-exec-9] AuthServlet - authenticating employee
+[TRACE] 2021-10-21 02:05:11.012 [http-nio-8082-exec-9] AuthServlet - passed authentication
+[TRACE] 2021-10-21 16:53:00.324 [http-nio-8082-exec-5] AuthServlet - authenticating employee
+[TRACE] 2021-10-21 16:53:00.892 [http-nio-8082-exec-5] AuthServlet - passed authentication
+[TRACE] 2021-10-21 16:53:03.433 [http-nio-8082-exec-10] AuthServlet - authenticating token
+[TRACE] 2021-10-21 16:53:03.469 [http-nio-8082-exec-10] AuthServlet - Check for manager initiated
+[ERROR] 2021-10-21 16:53:03.469 [http-nio-8082-exec-10] AuthServlet - token does not belong to a current manager
+[TRACE] 2021-10-21 17:22:49.529 [http-nio-8082-exec-10] AuthServlet - authenticating employee
+[TRACE] 2021-10-21 17:22:49.580 [http-nio-8082-exec-10] AuthServlet - passed authentication
