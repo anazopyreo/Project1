@@ -7,8 +7,6 @@ function attemptLogin(){
 
     const username = document.getElementById("username-input").value;
     const password = document.getElementById("password-input").value;
-    const manager = document.getElementById("manager-login").checked;
-    console.log(`manager = ${manager}`);
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "login");
@@ -22,13 +20,14 @@ function attemptLogin(){
             } else if(xhr.status===200){
                 const token = xhr.getResponseHeader("Authorization");
                 sessionStorage.setItem("token",token);
-                if(manager===true){
-                    window.location.href="manager.html";
-//                    window.location.href="http://localhost:8082/Project1/static/manager.html";
-                } else {
                 window.location.href="home.html";
-//                window.location.href="http://localhost:8082/Project1/static/home.html";
-                }
+//                if(manager===true){
+//                    window.location.href="manager.html";
+////                    window.location.href="http://localhost:8082/Project1/static/manager.html";
+//                } else {
+//                window.location.href="home.html";
+////                window.location.href="http://localhost:8082/Project1/static/home.html";
+//                }
             } else{
                 errorDiv.hidden = false;
                 errorDiv.innerText = "unknown error";
