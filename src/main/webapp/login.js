@@ -10,7 +10,6 @@ function attemptLogin(){
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "login");
-//    xhr.open("POST", "http://localhost:8082/Project1/login");
 
     xhr.onreadystatechange = function(){
         if(xhr.readyState===4){
@@ -21,13 +20,6 @@ function attemptLogin(){
                 const token = xhr.getResponseHeader("Authorization");
                 sessionStorage.setItem("token",token);
                 window.location.href="home.html";
-//                if(manager===true){
-//                    window.location.href="manager.html";
-////                    window.location.href="http://localhost:8082/Project1/static/manager.html";
-//                } else {
-//                window.location.href="home.html";
-////                window.location.href="http://localhost:8082/Project1/static/home.html";
-//                }
             } else{
                 errorDiv.hidden = false;
                 errorDiv.innerText = "unknown error";

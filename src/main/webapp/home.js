@@ -35,7 +35,7 @@ function get_resolved_requests(){
         fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "resolved"}})
 //        fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "resolved"}})
         .then(response => response.json())
-        .then(data => updateTable(data));
+        .then(data => updateResolvedTable(data));
     }
 }
 
@@ -45,7 +45,7 @@ function get_pending_requests(){
         fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "pending"}})
 //        fetch("http://localhost:8082/Project1/reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),"status" : "pending"}})
         .then(response => response.json())
-        .then(data => updateTable(data));
+        .then(data => updatePendingTable(data));
     }
 }
 
@@ -54,23 +54,23 @@ function setHidden(value){
     document.getElementByIdById("decision-date").hidden = value;
 }
 
-function updateTable(data){
-    let tableBody = document.getElementById("request-table");
-    while(tableBody.hasChildNodes()){
-        tableBody.removeChild(tableBody.firstChild);
-    }
-    for (item of data){
-        let tableRow = document.createElement("tr");
-        tableRow.innerHTML = `<td style="text-align:right">${item.requestID}</td>
-        <td style="text-align:right">\$${item.amount.toFixed(2)}</td>
-        <td>${item.category}</td>
-        <td>${item.status}</td>
-        <td>${item.reqDate}</td>
-        <td>${item.decDate}</td>
-        <td>${item.decManagerID}</td>`
-        tableBody.appendChild(tableRow);
-    }
-}
+// function updateTable(data){
+//     let tableBody = document.getElementById("request-table");
+//     while(tableBody.hasChildNodes()){
+//         tableBody.removeChild(tableBody.firstChild);
+//     }
+//     for (item of data){
+//         let tableRow = document.createElement("tr");
+//         tableRow.innerHTML = `<td style="text-align:right">${item.requestID}</td>
+//         <td style="text-align:right">\$${item.amount.toFixed(2)}</td>
+//         <td>${item.category}</td>
+//         <td>${item.status}</td>
+//         <td>${item.reqDate}</td>
+//         <td>${item.decDate}</td>
+//         <td>${item.decManagerID}</td>`
+//         tableBody.appendChild(tableRow);
+//     }
+// }
 
 function showDiv(){
     document.getElementById("request-form").reset();
@@ -115,4 +115,62 @@ function displayData(employee){
     document.getElementById("employee-name").innerText = `${employee.fname} ${employee.lname}`;
     document.getElementById("personal-email").innerText = employee.pemail;
     document.getElementById("work-email").innerText = employee.wemail;
+}
+
+function updateResolvedTable(data){
+    let tableHead = document.getElementById("display-table-head");
+    let tableBody = document.getElementById("display-table-body");
+    while(tableHead.hasChildNodes()){
+        tableHead.removeChild(tableHead.firstChild);
+    }
+    while(tableBody.hasChildNodes()){
+        tableBody.removeChild(tableBody.firstChild);
+    }
+    let tableRow = document.createElement("tr");
+    tableRow.innerHTML = `<th>Request ID</th>
+                          <th>status</th>
+                          <th>Category</th>
+                          <th>Amount</th>
+                          <th>Request Date</th>
+                          <th>Decision Date</th>
+                          <th>Manager</th>`
+                          tableHead.appendChild(tableRow);
+    for(item of data){
+        console.log(item);
+        let tableRow = document.createElement("tr");
+        tableRow.innerHTML = `<td style="text-align:right">${item.requestID}</td>
+        <td>${item.status}</td>
+        <td>${item.category}</td>
+        <td style="text-align:right">\$${item.amount.toFixed(2)}</td>
+        <td>${item.reqDate}</td>
+        <td>${item.decDate}</td>
+        <td>${item.decManagerID}</td>`
+        tableBody.appendChild(tableRow);
+    }
+}
+
+function updatePendingTable(data){
+    let tableHead = document.getElementById("display-table-head");
+    let tableBody = document.getElementById("display-table-body");
+    while(tableHead.hasChildNodes()){
+        tableHead.removeChild(tableHead.firstChild);
+    }
+    while(tableBody.hasChildNodes()){
+        tableBody.removeChild(tableBody.firstChild);
+    }
+    let tableRow = document.createElement("tr");
+    tableRow.innerHTML = `<th>Request ID</th>
+                          <th>Request Date</th>
+                          <th>Category</th>
+                          <th>Amount</th>`
+                          tableHead.appendChild(tableRow);
+    for(item of data){
+        console.log(item);
+        let tableRow = document.createElement("tr");
+        tableRow.innerHTML = `<td style="text-align:right">${item.requestID}</td>
+        <td>${item.reqDate}</td>
+        <td>${item.category}</td>
+        <td style="text-align:right">\$${item.amount.toFixed(2)}</td>`
+        tableBody.appendChild(tableRow);
+    }
 }
