@@ -50,8 +50,11 @@ public class ReimRequestData implements ReimRequestDAO {
     public List<ReimRequest> getRequestList(String filter, int employeeID, int managerID) {
         List<ReimRequest> requests = new ArrayList<>();
         StringBuilder bob = new StringBuilder("select * from request ");
+
+        System.out.println(filter+":"+employeeID+":"+managerID);
+
         if(!"all".equals(filter)){
-            bob.append(" where status = '" + filter.toUpperCase()+"'");
+            bob.append(getClause(filter));
             if(employeeID > 0){
                 bob.append(" and req_emp_id = ?");
             }
