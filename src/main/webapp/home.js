@@ -7,26 +7,26 @@ document.getElementById("manager-page-btn").addEventListener("click", forward_to
 
 function logout(){
     sessionStorage.removeItem("token");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 //    window.location.href = "http://localhost:8082/Project1/static/login.html";
 }
 
 function forward_to_manager(){
     const token = sessionStorage.getItem("token");
     if(token){
-        fetch("login",{method: "GET", headers: {"Authorization": sessionStorage.getItem("token")}})
-        .then(response => response.json())
+        fetch("login",{method: "GET", headers: {"Authorization": sessionStorage.getItem("token"),"managerCHeck":"true"}})
         .then(response => {
             if(response.ok){
                 window.location.href = "manager.html";
-            }else{
-                throw new Error("failed to authenticate token");
+                return response.json();
             }
-            return response.blob();
-        })
+            throw new Error("failed to authenticate token");
+            return Promise.reject(response);
+            })
         .catch(error => console.log(error.message));
     }
 }
+
 
 
 function get_resolved_requests(){

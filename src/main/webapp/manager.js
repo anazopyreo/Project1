@@ -3,6 +3,7 @@ document.getElementById("pending-req-btn").addEventListener("click", get_pending
 document.getElementById("resolved-req-btn").addEventListener("click", get_resolved_requests);
 document.getElementById("resolve").addEventListener("click", resolve_requests);
 document.getElementById("emp-btn").addEventListener("click", get_employees);
+document.getElementById("employee-home-btn").addEventListener("click", forward_to_home);
 
 function logout(){
     sessionStorage.removeItem("token");
@@ -131,7 +132,6 @@ function updatePendingTable(data){
     document.getElementById("rowCount").innerText = rows;
     for(i=0;i<rows;i++){
         item = data[i];
-    // for (item of data){
         let tableRow = document.createElement("tr");
         tableRow.innerHTML = `<td style="text-align:right">${item.requestID}</td>
         <td style="text-align:right">${item.reqEmployeeID}</td>
@@ -158,6 +158,22 @@ async function resolve_requests(){
         }
     }
     get_pending_requests();
+}
+
+function forward_to_home(){
+    const token = sessionStorage.getItem("token");
+    if(token){
+        fetch("login",{method: "GET", headers: {"Authorization": sessionStorage.getItem("token")}})
+        .then(response => {
+            if(response.ok){
+                window.location.href = "home.html";
+                return response.json();
+            }
+            throw new Error("failed to authenticate token");
+            return Promise.reject(response);
+            })
+        .catch(error => console.log(error.message));
+    }
 }
 
 

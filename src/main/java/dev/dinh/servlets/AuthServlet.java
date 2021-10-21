@@ -23,16 +23,20 @@ public class AuthServlet extends HttpServlet{
         logger.trace("authenticating token");
 
         String authToken = req.getHeader("Authorization");
+        boolean performManagerCheck = Boolean.parseBoolean(req.getHeader("managerCHeck"));
 
         if(!as.validToken(authToken)){
             logger.error("improper token format");
             resp.sendError(400, "Improper token format, unable to fulfill request");
-        }else if(!as.isEmployee(authToken)){
+        }else if(!as.isEmployee(authToken)) {
             logger.error("employee id not in system");
-            resp.sendError(403,"Token does not belong to a current employee");
-        }else if(!as.isManager(authToken)) {
-            logger.error("token does not belong to a current manager");
-            resp.sendError(403, "Invalid user role for current request");
+            resp.sendError(403, "Token does not belong to a current employee");
+        }else if(performManagerCheck){
+            logger.trace("Check for manager initiated");
+            if(!as.isManager(authToken)) {
+                logger.error("token does not belong to a current manager");
+                resp.sendError(403, "Invalid user role for current request");
+            }
         }else{
             logger.trace("passed authentication");
             resp.setStatus(200);
