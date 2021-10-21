@@ -106,3 +106,32 @@
 [TRACE] 2021-10-20 20:24:08.485 [http-nio-8082-exec-9] AuthServlet - Check for manager initiated
 [TRACE] 2021-10-20 20:24:12.758 [http-nio-8082-exec-2] AuthServlet - authenticating token
 [TRACE] 2021-10-20 20:24:12.800 [http-nio-8082-exec-2] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:28:50.376 [http-nio-8082-exec-1] AuthServlet - authenticating employee
+[TRACE] 2021-10-20 20:28:50.878 [http-nio-8082-exec-1] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:28:54.554 [http-nio-8082-exec-4] AuthServlet - authenticating token
+[TRACE] 2021-10-20 20:28:54.588 [http-nio-8082-exec-4] AuthServlet - Check for manager initiated
+[TRACE] 2021-10-20 20:29:08.531 [http-nio-8082-exec-10] AuthServlet - authenticating employee
+[TRACE] 2021-10-20 20:29:08.583 [http-nio-8082-exec-10] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:29:39.704 [http-nio-8082-exec-3] AuthServlet - authenticating employee
+[TRACE] 2021-10-20 20:29:39.740 [http-nio-8082-exec-3] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:29:50.987 [http-nio-8082-exec-4] AuthServlet - authenticating employee
+[TRACE] 2021-10-20 20:29:51.027 [http-nio-8082-exec-4] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:29:57.559 [http-nio-8082-exec-9] AuthServlet - authenticating token
+[TRACE] 2021-10-20 20:29:57.596 [http-nio-8082-exec-9] AuthServlet - Check for manager initiated
+[TRACE] 2021-10-20 20:30:17.452 [http-nio-8082-exec-4] AuthServlet - authenticating employee
+[TRACE] 2021-10-20 20:30:17.489 [http-nio-8082-exec-4] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:30:35.379 [http-nio-8082-exec-3] AuthServlet - authenticating token
+[TRACE] 2021-10-20 20:30:35.416 [http-nio-8082-exec-3] AuthServlet - Check for manager initiated
+[ERROR] 2021-10-20 20:30:35.416 [http-nio-8082-exec-3] AuthServlet - token does not belong to a current manager
+[TRACE] 2021-10-20 20:30:45.965 [http-nio-8082-exec-2] AuthServlet - authenticating employee
+[TRACE] 2021-10-20 20:30:46.125 [http-nio-8082-exec-2] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:30:49.748 [http-nio-8082-exec-5] AuthServlet - authenticating token
+[TRACE] 2021-10-20 20:30:49.783 [http-nio-8082-exec-5] AuthServlet - Check for manager initiated
+[TRACE] 2021-10-20 20:31:11.106 [http-nio-8082-exec-10] AuthServlet - authenticating token
+[TRACE] 2021-10-20 20:31:11.142 [http-nio-8082-exec-10] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:31:31.300 [http-nio-8082-exec-9] AuthServlet - authenticating token
+[TRACE] 2021-10-20 20:31:31.335 [http-nio-8082-exec-9] AuthServlet - Check for manager initiated
+[TRACE] 2021-10-20 20:31:47.263 [http-nio-8082-exec-4] AuthServlet - authenticating token
+[TRACE] 2021-10-20 20:31:47.303 [http-nio-8082-exec-4] AuthServlet - passed authentication
+[TRACE] 2021-10-20 20:41:04.870 [http-nio-8082-exec-1] AuthServlet - authenticating token
+[TRACE] 2021-10-20 20:41:05.384 [http-nio-8082-exec-1] AuthServlet - Check for manager initiated

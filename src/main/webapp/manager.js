@@ -102,7 +102,7 @@ function updateResolvedTable(data){
         <td style="text-align:right">${item.reqEmployeeID}</td>
         <td>${item.status}</td>
         <td>${item.category}</td>
-        <td style="text-align:right">\$${item.amount}</td>
+        <td style="text-align:right">\$${item.amount.toFixed(2)}</td>
         <td>${item.reqDate}</td>
         <td>${item.decDate}</td>
         <td>${item.decManagerID}</td>`
@@ -137,7 +137,7 @@ function updatePendingTable(data){
         <td style="text-align:right">${item.reqEmployeeID}</td>
         <td>${item.reqDate}</td>
         <td>${item.category}</td>
-        <td style="text-align:right">\$${item.amount}</td>
+        <td style="text-align:right">\$${item.amount.toFixed(2)}</td>
         <td><input type="radio" id="approve${i}" name="row${i}" value="approved"></td>
         <td><input type="radio" id="deny${i}" name="row${i}" value="denied"></td>`
         tableBody.appendChild(tableRow);

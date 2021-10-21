@@ -62,7 +62,7 @@ function updateTable(data){
     for (item of data){
         let tableRow = document.createElement("tr");
         tableRow.innerHTML = `<td style="text-align:right">${item.requestID}</td>
-        <td style="text-align:right">\$${item.amount}</td>
+        <td style="text-align:right">\$${item.amount.toFixed(2)}</td>
         <td>${item.category}</td>
         <td>${item.status}</td>
         <td>${item.reqDate}</td>
