@@ -4,15 +4,63 @@ document.getElementById("resolved-req-btn").addEventListener("click", get_resolv
 document.getElementById("resolve").addEventListener("click", resolve_requests);
 document.getElementById("emp-btn").addEventListener("click", get_employees);
 document.getElementById("employee-home-btn").addEventListener("click", forward_to_home);
+document.getElementById("new-employee").addEventListener("click", create_employee);
+
+
 
 function logout(){
     sessionStorage.removeItem("token");
     window.location.href = "index.html";
 }
 
+function create_employee(){
+    let sub_emp = document.getElementById("submit-employee");
+    sub_emp.addEventListener("click", submit_employee);
+    sub_emp.hidden = false;
+    let tableHead = document.getElementById("display-table-head");
+    let tableBody = document.getElementById("display-table-body");
+    document.getElementById("new-employee").hidden = true;
+
+    clearTable();
+    let tableRow = document.createElement("tr");
+    tableRow.innerHTML = `<th>First Name</th>
+                          <th>Middle Name</th>
+                          <th>Last Name</th>
+                          <th>Personal Email</th>`
+    tableHead.appendChild(tableRow);
+
+    tableRow = document.createElement("tr");
+    tableRow.innerHTML = `<td><input type = "text" name = "fname" id = "fname"></td>
+                          <td><input type = "text" name = "mname" id = "mname"></td>
+                          <td><input type = "text" name = "lname" id = "lname"></td>
+                          <td><input type = "email" name = "pemail" id = "pemail"></td>`
+    tableBody.appendChild(tableRow);
+
+}
+
+function submit_employee(){
+    const token = sessionStorage.getItem("token");
+    document.getElementById("submit-employee").hidden = true;
+    let fname = document.getElementById("fname").value;
+    let mname = document.getElementById("mname").value;
+    let lname = document.getElementById("lname").value;
+    let pemail = document.getElementById("pemail").value;
+    document.getElementById("fname").value = "";
+    document.getElementById("mname").value = "";
+    document.getElementById("lname").value = "";
+    document.getElementById("pemail").value = "";
+    if("token"){
+        fetch("manager", {method: "POST", headers: {"Authorization" : token, "fname":fname, "mname":mname, "lname":lname, "pemail":pemail}})
+        .then(response => response.json());
+    } else {
+        window.location.href = "index.html";
+    }
+
+}
+
 function displayProfile(){
     const token = sessionStorage.getItem("token");
-    console.log("display profile reached");
+    document.getElementById("new-employee").hidden = true;
     if("token"){
         fetch("employees", {method: "GET", headers: {"Authorization" : token}})
         .then(response => response.json())
@@ -23,6 +71,7 @@ function displayProfile(){
 }
 
 function displayData(employee){
+    document.getElementById("new-employee").hidden = true;
     document.getElementById("employee-id").innerText = employee.employeeID;
     document.getElementById("employee-name").innerText = `${employee.fname} ${employee.lname}`;
     document.getElementById("personal-email").innerText = employee.pemail;
@@ -31,6 +80,7 @@ function displayData(employee){
 
 function get_resolved_requests(){
     const token = sessionStorage.getItem("token");
+    document.getElementById("new-employee").hidden = true;
     if(token){
         fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),status : "resolved","managerReq" : "true"}})
         .then(response => response.json())
@@ -42,6 +92,7 @@ function get_resolved_requests(){
 
 function get_pending_requests(){
     const token = sessionStorage.getItem("token");
+    document.getElementById("new-employee").hidden = true;
     if(token){
         fetch("reimbursment", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token"),status : "pending","managerReq" : "true"}})
         .then(response => response.json())
@@ -53,6 +104,7 @@ function get_pending_requests(){
 
 function get_employees(){
     const token = sessionStorage.getItem("token");
+    document.getElementById("new-employee").hidden = false;
     if(token){
         fetch("manager", {method: "GET", headers: {"Authorization" : sessionStorage.getItem("token")}})
         .then(response => response.json())
@@ -62,8 +114,7 @@ function get_employees(){
     }
 }
 
-function updateEmployeesTable(data){
-    document.getElementById("resolve").hidden = true;
+function clearTable(){
     let tableHead = document.getElementById("display-table-head");
     let tableBody = document.getElementById("display-table-body");
     while(tableHead.hasChildNodes()){
@@ -72,6 +123,13 @@ function updateEmployeesTable(data){
     while(tableBody.hasChildNodes()){
         tableBody.removeChild(tableBody.firstChild);
     }
+}
+
+function updateEmployeesTable(data){
+    let tableHead = document.getElementById("display-table-head");
+    let tableBody = document.getElementById("display-table-body");
+    clearTable();
+    document.getElementById("resolve").hidden = true;
     let tableRow = document.createElement("tr");
     tableRow.innerHTML = `<th>Employee ID</th>
                           <th>Username</th>
@@ -100,14 +158,9 @@ function updateEmployeesTable(data){
 
 function updateResolvedTable(data){
     document.getElementById("resolve").hidden = true;
+    clearTable();
     let tableHead = document.getElementById("display-table-head");
     let tableBody = document.getElementById("display-table-body");
-    while(tableHead.hasChildNodes()){
-        tableHead.removeChild(tableHead.firstChild);
-    }
-    while(tableBody.hasChildNodes()){
-        tableBody.removeChild(tableBody.firstChild);
-    }
     let tableRow = document.createElement("tr");
     tableRow.innerHTML = `<th>Request ID</th>
                           <th>Employee ID</th>

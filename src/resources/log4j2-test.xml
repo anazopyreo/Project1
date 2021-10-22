@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="all">
+<Configuration status="none">
     <Properties>
-        <Property name="basePath">${sys:catalina.home}/logs</Property>
+        <Property name="basePath">C:\Users\anazo\IdeaProjects\Project1</Property>
     </Properties>
 
     <Appenders>
@@ -20,8 +20,8 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="dev.dinh.servlets.AuthServlet" level="all" additivity="false">
-            <appender-ref ref="fileLogger" level="all" />
+        <Logger name="dev.dinh.servlets.AuthServlet" level="none" additivity="false">
+            <appender-ref ref="fileLogger" level="none" />
         </Logger>
         <Root level="info" additivity="false">
             <appender-ref ref="console" />

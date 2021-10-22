@@ -74,7 +74,6 @@ public class ReimRequestServlet extends HttpServlet {
             String category = req.getHeader("Category");
             int employeeID = Integer.parseInt(authToken.split(":")[0]);
             ReimRequest returnReq = rrs.createReq(amount, Category.valueOf(category), employeeID);
-            while(returnReq == null){}
             resp.setStatus(201);
         }
     }

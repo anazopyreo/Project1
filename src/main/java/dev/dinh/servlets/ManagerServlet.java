@@ -42,4 +42,22 @@ public class ManagerServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String authToken = req.getHeader("Authorization");
+        if (!as.validToken(authToken)) {
+            resp.sendError(400, "Improper token format, unable to fulfill request");
+        } else if (!as.isManager(authToken)) {
+            resp.sendError(403, "Invalid user role for current request");
+        } else {
+            String fname = req.getHeader("fname");
+            String mname = req.getHeader("mname");
+            String lname = req.getHeader("lname");
+            String pemail = req.getHeader("pemail");
+            es.createEmployee(fname,mname,lname,pemail);
+            if(fname == null || fname.equals("") || lname==null || lname.equals("") || pemail == null || pemail.equals("")){
+                resp.sendError(400,"First Name, Last Name and Personal Email required");
+            }else{resp.setStatus(201);}
+        }
+    }
 }
