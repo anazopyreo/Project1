@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="all">
     <Properties>
-        <Property name="basePath">/home/ec2-user/projects/project1/</Property>
+        <Property name="basePath">~\projects\project1</Property>
     </Properties>
 
     <Appenders>
-        <RollingFile name="fileLogger" fileName="${basePath}/logs/traceLog.log" filePattern="${basePath}/logs/traceLog-%d{yyyy-MM-dd}.log">
+        <RollingFile name="fileLogger" fileName="${basePath}/traceLog.log" filePattern="${basePath}/traceLog-%d{yyyy-MM-dd}.log">
             <PatternLayout>
                 <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
             </PatternLayout>
