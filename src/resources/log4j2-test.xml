@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="all">
     <Properties>
-        <Property name="basePath">\</Property>
+        <Property name="basePath">/home/ec2-user/projects/project1/</Property>
     </Properties>
 
     <Appenders>
