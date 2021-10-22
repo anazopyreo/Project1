@@ -10,17 +10,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ReimRequestDataTest {
-//
-//    @BeforeEach
-//    public void runSetUp(){
-//        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test")) {
-//            RunScript.execute(connection, new FileReader("sql-setup.sql"));
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
+
+    @BeforeEach
+    public void runSetUp(){
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test")) {
+            RunScript.execute(connection, new FileReader("sql-setup.sql"));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
