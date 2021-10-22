@@ -108,7 +108,7 @@ function updateResolvedTable(data){
     }
     let tableRow = document.createElement("tr");
     tableRow.innerHTML = `<th>Request ID</th>
-                          <th>status</th>
+                          <th>Status</th>
                           <th>Category</th>
                           <th>Amount</th>
                           <th>Request Date</th>

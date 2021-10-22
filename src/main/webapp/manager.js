@@ -10,6 +10,25 @@ function logout(){
     window.location.href = "index.html";
 }
 
+function displayProfile(){
+    const token = sessionStorage.getItem("token");
+    console.log("display profile reached");
+    if("token"){
+        fetch("employees", {method: "GET", headers: {"Authorization" : token}})
+        .then(response => response.json())
+        .then(data => displayData(data));
+    } else {
+        window.location.href = "index.html";
+    }
+}
+
+function displayData(employee){
+    document.getElementById("employee-id").innerText = employee.employeeID;
+    document.getElementById("employee-name").innerText = `${employee.fname} ${employee.lname}`;
+    document.getElementById("personal-email").innerText = employee.pemail;
+    document.getElementById("work-email").innerText = employee.wemail;
+}
+
 function get_resolved_requests(){
     const token = sessionStorage.getItem("token");
     if(token){
