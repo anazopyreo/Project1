@@ -1,7 +1,7 @@
 @Total Expense Reimbursement Management System (TERMS)
 
 ## Project Description
-- TERMS is an Expense Reimbursement System (ERS) - Allows employees to submit requests for reimbursement and managers to review and resolve those requests.
+TERMS is an Expense Reimbursement System (ERS) - Allows employees to submit requests for reimbursement and managers to review and resolve those requests.
 
 ## Tecnologies Used
 - Java - version 1.8
