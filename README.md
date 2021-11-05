@@ -13,7 +13,7 @@ TERMS is an Expense Reimbursement System (ERS) - Allows employees to submit requ
 - Managers can Review and resolve Reimbursement Requests submitted by employees
 - Managers can add new employees into the system
 
-##Getting Started
+## Getting Started
 - git clone https://github.com/anazopyreo/Project1.git
 
 ## Usage
